@@ -3,6 +3,7 @@ import './Class.css';
 
 const Class = ({classname, classtributes, attributes}) => {
     const [eligible, setEligible] = useState(false);
+    const [hidden, setHidden] = useState(true);
 
 
     // when attributes update, check all class attributes to determine eligibility
@@ -21,11 +22,26 @@ const Class = ({classname, classtributes, attributes}) => {
         }
     }, [attributes]);
 
+    function toggleDisplay() {
+        setHidden(!hidden);
+    }
+
 
     return (
-        <div className={"classname " + (eligible ? 'eligible' : '')}>
-            {classname}
+        <div className="classinfo">
+            <button className={(eligible ? 'eligible' : '')}
+                onClick={toggleDisplay}>
+                {classname}
+            </button>
+            <ul className={"classtributes " + (hidden ? 'hidden' : '')}>
+                {Object.keys(classtributes).map((c, i) => (
+                        <li>
+                            {c} : {classtributes[c]}
+                        </li>
+                ))}
+            </ul>
         </div>
+        
     )
 }
 

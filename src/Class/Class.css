@@ -1,3 +1,13 @@
 .eligible {
-    color:aqua;
+    background-color:aqua;
+}
+
+.hidden {
+    display: none;
+}
+
+.classinfo {
+    padding: 3px;
+    margin: 3px;
+    background-color: grey;
 }
