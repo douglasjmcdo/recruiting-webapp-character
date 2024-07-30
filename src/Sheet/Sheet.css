@@ -1,0 +1,10 @@
+.sheet {
+    display:flex;
+    flex-direction: row;
+}
+
+.attributes {
+    padding: 3px;
+    margin: 3px;
+    background-color: gray;
+}

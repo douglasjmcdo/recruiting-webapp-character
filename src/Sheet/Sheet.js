@@ -1,9 +1,13 @@
 import { useState } from "react";
 import AttController from "../AttController/AttController";
-import { ATTRIBUTE_LIST } from "../consts";
+import { ATTRIBUTE_LIST, CLASS_LIST } from "../consts";
+import './Sheet.css'
+import Class from "../Class/Class";
+
 const Sheet = () => {
     const [num, setNum] = useState(0);
-    const [attributes, setAttributes] = useState([0, 0, 0, 0, 0, 0]);
+    const [attributes, setAttributes] = useState([10, 10, 10, 10, 10, 10]);
+    //let CLASS_ARR = JSON.stringify(CLASS_LIST);
 
     //pass in index to update and new val to set it to
     function setAttributeX(index, newval) {
@@ -19,10 +23,9 @@ const Sheet = () => {
 
     return (
         <div className="sheet">
-          Sheet Value:
-          
-          Attributes:
+
             <div className="attributes">
+            Attributes:
                 {attributes.map((att, i) => (
                     <AttController 
                     key={i}
@@ -35,8 +38,12 @@ const Sheet = () => {
             </div>
 
             <div className="classes">
-                {CLASS_LIST.map(() => (
-                    <div></div>
+                {Object.keys(CLASS_LIST).map((c, i) => (
+                    <Class key={i}
+                    classname={c}
+                    classtributes={CLASS_LIST[c]}
+                    attributes={attributes}
+                    />
                 ))}
             </div>
           
