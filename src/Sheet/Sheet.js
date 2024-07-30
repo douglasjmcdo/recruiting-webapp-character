@@ -3,10 +3,12 @@ import AttController from "../AttController/AttController";
 import { ATTRIBUTE_LIST, CLASS_LIST } from "../consts";
 import './Sheet.css'
 import Class from "../Class/Class";
+import Skillset from "../Skillset/Skillset";
 
 const Sheet = () => {
     const [num, setNum] = useState(0);
     const [attributes, setAttributes] = useState([10, 10, 10, 10, 10, 10]);
+    const [mods, setMods] = useState([0, 0, 0, 0, 0, 0]);
     //let CLASS_ARR = JSON.stringify(CLASS_LIST);
 
     //pass in index to update and new val to set it to
@@ -21,6 +23,17 @@ const Sheet = () => {
         setAttributes(newarr);
     }
 
+    function setModX(index, newval) {
+        let newarr = mods.map((val, i) => {
+            if (i === index) {
+                return newval;
+            } else {
+                return val;
+            }
+        });
+        setMods(newarr);
+    }
+
     return (
         <div className="sheet">
 
@@ -32,6 +45,8 @@ const Sheet = () => {
                     name={ ATTRIBUTE_LIST[i] }
                     val={att}
                     setVal={setAttributeX}
+                    mod={mods[i]}
+                    setMod={setModX}
                     index={i} 
                     />
                 ))}
@@ -45,6 +60,13 @@ const Sheet = () => {
                     attributes={attributes}
                     />
                 ))}
+            </div>
+
+            <div className="skillset">
+                <Skillset
+                    mods={mods}
+                />
+
             </div>
           
           

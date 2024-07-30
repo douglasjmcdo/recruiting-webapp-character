@@ -35,7 +35,7 @@ const Class = ({classname, classtributes, attributes}) => {
             </button>
             <ul className={"classtributes " + (hidden ? 'hidden' : '')}>
                 {Object.keys(classtributes).map((c, i) => (
-                        <li>
+                        <li key={c}>
                             {c} : {classtributes[c]}
                         </li>
                 ))}

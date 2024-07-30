@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 
-const AttController = ({name, val, setVal, index}) => {
-    const [modifier, setModifier] = useState(0);
-    
+const AttController = ({name, val, setVal, mod, setMod, index}) => {
+   
     function increment() {
         setVal(index, val + 1);
     }
@@ -13,7 +12,10 @@ const AttController = ({name, val, setVal, index}) => {
 
     //recalculate modifier on value change
     useEffect(() => {
-        setModifier(Math.floor((val - 10) / 2));
+        let newmod = Math.floor((val - 10) / 2);
+        if (newmod != mod) {
+            setMod(index, newmod);
+        }
     }, [val])
 
     return (
@@ -23,7 +25,7 @@ const AttController = ({name, val, setVal, index}) => {
           {val}
           <button onClick={increment}>+</button>
 
-          <div>MOD {modifier}</div>
+          <div>MOD {mod}</div>
         </div>
     )
 }
